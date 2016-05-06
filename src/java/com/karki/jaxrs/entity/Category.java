@@ -28,20 +28,13 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "tbl_categories", catalog = "estore", schema = "")
 @NamedQueries({
-    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
-    @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id"),
-    @NamedQuery(name = "Category.findByName", query = "SELECT c FROM Category c WHERE c.name = :name"),
-    @NamedQuery(name = "Category.findByAddedDate", query = "SELECT c FROM Category c WHERE c.addedDate = :addedDate"),
-    @NamedQuery(name = "Category.findByModifiedDate", query = "SELECT c FROM Category c WHERE c.modifiedDate = :modifiedDate"),
-    @NamedQuery(name = "Category.findByStatus", query = "SELECT c FROM Category c WHERE c.status = :status")})
+    @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")})
 public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     @Column(name = "id")
     private Integer id;
-   
     @Column(name = "name")
     private String name;
     @Column(name = "description")
@@ -52,7 +45,6 @@ public class Category implements Serializable {
     @Column(name = "modified_date",nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-    
     @Column(name = "status")
     private boolean status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
@@ -61,9 +53,7 @@ public class Category implements Serializable {
     public Category() {
     }
 
-    public Category(Integer id) {
-        this.id = id;
-    }
+    
 
     public Category(Integer id, String name, String description, Date addedDate, boolean status) {
         this.id = id;

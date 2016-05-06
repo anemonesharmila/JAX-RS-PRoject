@@ -74,4 +74,6 @@ public class CategoryDaoImpl implements CategoryDao {
         return em.find(Category.class, id);
     }
 
+  
+
 }

@@ -28,27 +28,27 @@ public class CategoryAPI {
         return CategoryService.getAll();
     }
 
-//    @GET
-//    @Produces("text/plain")
-//    public String see()
-//    {
-//        return "<h1>what????</h1>";
-//    }
+    @GET
+   @Produces("text/plain")
+   public String see()
+    {
+        return "<h1>what????</h1>";
+    }
     
-//    @Path("/{id}")
-//    @GET
-//    @Produces(value = MediaType.APPLICATION_JSON)
-//    public Category id(@PathParam("id") int id)
-//    {
-//        return CategoryService.getById(id);
-//    }
-//    
-//    @Path("/save")
-//    @POST
-//    public String save(@FormParam("name")String name,@FormParam("description")String desc,@FormParam("status")int status)
-//    {
-//        Category category=new Category(0, name, desc, null, (status==1)?true:false);
-//        CategoryService.insert(null);
-//        return "save";
-//    }
+    @Path("/{id}")
+    @GET
+    @Produces(value = MediaType.APPLICATION_JSON)
+    public Category id(@PathParam("id") int id)
+    {
+        return CategoryService.getById(id);
+    }
+    
+    @Path("/save")
+    @POST
+   public String save(@FormParam("name")String name,@FormParam("description")String desc,@FormParam("status")int status)
+    {
+        Category category=new Category(0, name, desc, null, (status==1)?true:false);
+        CategoryService.insert(category);
+        return "save";
+    }
 }

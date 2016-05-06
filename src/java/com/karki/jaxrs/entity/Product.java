@@ -28,47 +28,31 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "tbl_products", catalog = "estore", schema = "")
 @NamedQueries({
-    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
-    @NamedQuery(name = "Product.findById", query = "SELECT p FROM Product p WHERE p.id = :id"),
-    @NamedQuery(name = "Product.findByTitle", query = "SELECT p FROM Product p WHERE p.title = :title"),
-    @NamedQuery(name = "Product.findByQuantity", query = "SELECT p FROM Product p WHERE p.quantity = :quantity"),
-    @NamedQuery(name = "Product.findByCostPrice", query = "SELECT p FROM Product p WHERE p.costPrice = :costPrice"),
-    @NamedQuery(name = "Product.findBySellingPrice", query = "SELECT p FROM Product p WHERE p.sellingPrice = :sellingPrice"),
-    @NamedQuery(name = "Product.findByAddedDate", query = "SELECT p FROM Product p WHERE p.addedDate = :addedDate"),
-    @NamedQuery(name = "Product.findByModifiedDate", query = "SELECT p FROM Product p WHERE p.modifiedDate = :modifiedDate"),
-    @NamedQuery(name = "Product.findByStatus", query = "SELECT p FROM Product p WHERE p.status = :status")})
+    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")})
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-  
     @Column(name = "id")
     private Integer id;
-   
     @Column(name = "title")
     private String title;
-    
     @Column(name = "description")
     private String description;
-    
     @Column(name = "quantity")
     private int quantity;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-   
-    @Column(name = "cost_price", nullable = false, precision = 10, scale = 2)
+    @Column(name = "cost_price")
     private BigDecimal costPrice;
-   
-    @Column(name = "selling_price", nullable = false, precision = 10, scale = 2)
+    @Column(name = "selling_price")
     private BigDecimal sellingPrice;
-   
     @Column(name = "added_date", insertable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date addedDate;
     @Column(name = "modified_date",nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedDate;
-   
-    @Column(name = "status")
+    @Column(nullable = false)
     private short status;
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     @ManyToOne(optional = false)
@@ -168,7 +152,7 @@ public class Product implements Serializable {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategoryId(Category category) {
         this.category = category;
     }
 

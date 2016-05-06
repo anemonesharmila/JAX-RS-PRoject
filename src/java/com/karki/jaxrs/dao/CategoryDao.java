@@ -19,5 +19,6 @@ public interface CategoryDao {
     void delete(int id);
     List<Category> getAll();
     Category getById(int id);
+    
             
 }
